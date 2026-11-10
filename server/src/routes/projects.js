@@ -1,0 +1,10 @@
+import { Router } from "express";
+import { requireAuth } from "../middleware/auth.js";
+import { addActivity, createProject, deleteProject, getProject, listProjects, listTasks, updateProject } from "../utils/repository.js";
+const router=Router();router.use(requireAuth);
+router.get("/",async(req,res,next)=>{try{const projects=await listProjects(req.user.id);const tasks=await listTasks(req.user.id);res.json({projects:projects.map(p=>{const ts=tasks.filter(t=>String(t.project?._id||t.project)===String(p._id));return {...p.toObject?.()||p,taskCount:ts.length,progress:ts.length?Math.round(ts.filter(t=>t.status==="done").length/ts.length*100):0};})});}catch(e){next(e);}});
+router.post("/",async(req,res,next)=>{try{const {name,description=""}=req.body||{};if(!name?.trim())return res.status(400).json({message:"Project name is required."});const p=await createProject({name:name.trim(),description,owner:req.user.id});await addActivity({actor:req.user.id,project:p._id,action:"project_created",message:`created project "${p.name}"`});res.status(201).json({project:p});}catch(e){next(e);}});
+router.get("/:id",async(req,res,next)=>{try{const p=await getProject(req.params.id,req.user.id);if(!p)return res.status(404).json({message:"Project not found."});res.json({project:p});}catch(e){next(e);}});
+router.patch("/:id",async(req,res,next)=>{try{const patch={};if(req.body.name!==undefined)patch.name=req.body.name.trim();if(req.body.description!==undefined)patch.description=req.body.description;const p=await updateProject(req.params.id,req.user.id,patch);if(!p)return res.status(404).json({message:"Project not found."});res.json({project:p});}catch(e){next(e);}});
+router.delete("/:id",async(req,res,next)=>{try{const p=await deleteProject(req.params.id,req.user.id);if(!p)return res.status(404).json({message:"Project not found."});res.json({message:"Project deleted."});}catch(e){next(e);}});
+export default router;
