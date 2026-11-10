@@ -86,14 +86,8 @@ TaskMatrix/
 │       ├── routes/
 │       ├── utils/
 │       └── index.js
-├── docs/
-│   ├── PRD.md
-│   ├── API.md
-│   ├── ARCHITECTURE.md
-│   ├── STATE_TREE.md
-│   ├── WIREFRAMES.md
-│   └── PROMPTS.md
 └── README.md
+└── PROMPTS.md
 ```
 
 ## 8. Important scope notes
