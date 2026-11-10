@@ -1,4 +1,4 @@
-# TaskMatrix — Agile Project Management Platform
+# TaskMatrix — Task Management Platform
 
 TaskMatrix is a full-stack project-management application for small software teams. It provides project workspaces, task tracking, Kanban workflow, team assignment, priorities, due dates, dashboard metrics and an activity feed.
 
@@ -13,7 +13,7 @@ TaskMatrix is a full-stack project-management application for small software tea
 ## 2. Current MVP features
 
 - Register and log in using email and password (JWT authentication).
-- Seed/demo account for immediate local testing.
+- Seed account for immediate local testing.
 - Dashboard with task totals, completion rate, overdue work and recent activity.
 - Create, edit and delete projects.
 - Create, edit and delete tasks.
@@ -24,7 +24,7 @@ TaskMatrix is a full-stack project-management application for small software tea
 - Activity feed for important task and project events.
 - Responsive layout for desktop and mobile.
 - MongoDB persistence with Mongoose.
-- Local fallback storage when MongoDB is not configured (development/demo only).
+- Local fallback storage when MongoDB is not configured (development only).
 
 ## 3. Technology stack
 
@@ -43,7 +43,7 @@ TaskMatrix is a full-stack project-management application for small software tea
 - Node.js 20 or newer (LTS recommended)
 - npm
 - VS Code
-- MongoDB Atlas account OR local MongoDB Community Server (optional for demo fallback)
+- MongoDB Atlas account OR local MongoDB Community Server (optional for  fallback)
 
 Check installation:
 
@@ -59,42 +59,6 @@ npm -v
 3. Open Terminal → New Terminal.
 4. Install dependencies:
 
-```bash
-npm install
-```
-
-5. Create the environment file:
-
-```bash
-copy server\.env.example server\.env
-```
-
-6. Open `server/.env`. For MongoDB persistence, replace `MONGODB_URI` with your Atlas connection string. If you leave it blank, the server uses temporary in-memory demo data that resets when the server restarts.
-
-7. Start both applications:
-
-```bash
-npm run dev
-```
-
-8. Open the frontend at `http://localhost:5173`.
-   Backend health endpoint: `http://localhost:5000/api/health`.
-
-### Demo login
-
-- Email: `demo@taskmatrix.local`
-- Password: `TaskMatrix123!`
-
-The demo account is created automatically on first startup. Change the demo password before using this outside local evaluation.
-
-## 6. Environment variables
-
-See `server/.env.example`.
-
-- `PORT`: API server port (default 5000)
-- `MONGODB_URI`: MongoDB connection string; optional for local demo
-- `JWT_SECRET`: long random secret for signing tokens
-- `CLIENT_ORIGIN`: frontend origin (default `http://localhost:5173`)
 
 ## 7. Repository structure
 
@@ -144,9 +108,9 @@ This is a working capstone MVP foundation, not a production-certified enterprise
 - Sprint 16: Polish, accessibility, testing and optional integrations.
 - Sprint 17: CI/CD, deployment and final demonstration.
 
-## 10. Capstone demo flow
+## 10. Capstone 
 
-1. Sign in with the demo account.
+1. Sign in with the  account.
 2. Review dashboard metrics.
 3. Open a project.
 4. Create a task and assign it.
